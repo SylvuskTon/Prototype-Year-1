@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
 
-    public int enemyHP = 1;
+    public int enemyHP;
 
 
     public void TakeDamage(int amount)
