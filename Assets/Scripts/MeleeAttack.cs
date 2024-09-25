@@ -10,22 +10,27 @@ public class MeleeAttack : MonoBehaviour
     public float weaponRange; //raidus of area to check for enemies
     public int weaponDMG; //weapon... damage
     public LayerMask enemyLayer; // script identify enemies from non-targets
-    
+
+    bool canAttack = true;
     
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && canAttack == true)
         {
             StartCoroutine(Attack());
         }
+    }
 
-        IEnumerator Attack()
+    IEnumerator Attack()
+    {
+        canAttack = false;
+        Collider2D enemy = Physics2D.OverlapCircle(weaponTransform.position, weaponRange, enemyLayer);
+        yield return new WaitForSeconds(attackDelay);
+        if (enemy != null)
         {
-            Collider2D enemy = Physics2D.OverlapCircle(weaponTransform.position, weaponRange, enemyLayer);
-            yield return new WaitForSeconds(attackDelay);
             enemy.GetComponent<EnemyStats>().TakeDamage(weaponDMG);
-
         }
+        canAttack = true;
     }
 }

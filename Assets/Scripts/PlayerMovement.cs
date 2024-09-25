@@ -33,4 +33,5 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(horizontal, 0, 0) * Time.deltaTime * speed;
     }
 
+   
 }

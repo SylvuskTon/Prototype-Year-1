@@ -9,6 +9,8 @@ public class PlayerStats : MonoBehaviour
 
     public HealthBar healthBar;
 
+    public GameObject gameOverPanel;
+
     void Start()
     {
         currentHealth = maxHP;
@@ -19,9 +21,18 @@ public class PlayerStats : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            
+            PlayerDie();
         }
 
         healthBar.SetHealth(currentHealth);
     }
+
+    void PlayerDie()
+    {
+      
+        gameOverPanel.SetActive(true);
+        Destroy(gameObject);
+    }
+
 }
