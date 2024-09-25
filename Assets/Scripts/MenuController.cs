@@ -12,8 +12,10 @@ public class MenuController : MonoBehaviour
     public void CloseGame()
     { 
       Application.Quit();
+        Debug.Log("Game Gone");
     }
 
+  
     public void LoadScene()
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
