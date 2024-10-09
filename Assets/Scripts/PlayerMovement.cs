@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight;
     public Rigidbody2D rb;
     public float speed;
-
+    //public float gravity;
+    //public float gravitySpeed;
   
 
     private void Start()
@@ -25,7 +26,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpHeight);
+            //gravity = 0;
         }
+
+        //gravity += Time.deltaTime * gravitySpeed;
+        //gravity = Mathf.Clamp(gravity, 0, 10);
+
+        //rb.gravityScale = gravity;
     }
 
     private void FixedUpdate()
