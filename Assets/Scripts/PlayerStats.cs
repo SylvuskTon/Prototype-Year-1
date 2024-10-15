@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     public HealthBar healthBar;
 
     public GameObject gameOverPanel;
+    public GameObject mainMenuButton;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     {
       
         gameOverPanel.SetActive(true);
+        mainMenuButton.SetActive(true);
         Destroy(gameObject);
     }
 
