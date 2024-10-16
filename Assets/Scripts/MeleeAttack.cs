@@ -12,6 +12,7 @@ public class MeleeAttack : MonoBehaviour
     public LayerMask enemyLayer; // script identify enemies from non-targets
 
     bool canAttack = true;
+    public Animator playerAnim;
     
     // Update is called once per frame
     void Update()
@@ -25,12 +26,15 @@ public class MeleeAttack : MonoBehaviour
     IEnumerator Attack()
     {
         canAttack = false;
+        playerAnim.Play("Player_Attacking");
         Collider2D enemy = Physics2D.OverlapCircle(weaponTransform.position, weaponRange, enemyLayer);
         yield return new WaitForSeconds(attackDelay);
         if (enemy != null)
         {
             enemy.GetComponent<EnemyStats>().TakeDamage(weaponDMG);
+          
         }
         canAttack = true;
+        
     }
 }

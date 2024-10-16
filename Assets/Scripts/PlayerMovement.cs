@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     //public float gravity;
     //public float gravitySpeed;
+    public Animator playerAnim;
   
 
     private void Start()
@@ -22,12 +23,45 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
+        if (horizontal == 0)
+        {
+            playerAnim.SetBool("isMoving", false);
+        }
+        else
+        {
+            playerAnim.SetBool("isMoving", true);
+        }
+
+
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    playerAnim.Play("Player_Walking");
+        //}
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    playerAnim.Play("Player_Walking");
+        //}
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    playerAnim.Play("Player_Walking");
+        //}
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    playerAnim.Play("Player_Walking");
+        //}
 
         if (Input.GetKey(KeyCode.Space))
         {
+           
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpHeight);
+            playerAnim.SetBool("isJumping", true);
             //gravity = 0;
         }
+        else
+        {
+            playerAnim.SetBool("isJumping", false);
+        }
+
 
         //gravity += Time.deltaTime * gravitySpeed;
         //gravity = Mathf.Clamp(gravity, 0, 10);
