@@ -50,10 +50,10 @@ public class PlayerMovement : MonoBehaviour
         //    playerAnim.Play("Player_Walking");
         //}
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
            
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpHeight);
+            rb.AddForce(Vector2.up * jumpHeight);
             playerAnim.SetBool("isJumping", true);
             //gravity = 0;
         }
@@ -71,8 +71,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(horizontal, 0, 0) * Time.deltaTime * speed;
+        float vertical = rb.velocity.y;
+        rb.velocity = new Vector2(horizontal * speed, vertical);
     }
+
 
    
 }
